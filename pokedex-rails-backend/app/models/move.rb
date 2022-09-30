@@ -8,14 +8,12 @@
 #  updated_at :datetime         not null
 #
 class Move < ApplicationRecord
-    validates :name, length: { in: 3..255 }, uniqueness: { message: "The name %{value} is already taken"}
-
-    has_many :pokemon, 
-    dependent: :destroy
+    validates :name, length: { in: 3..255 }, uniqueness: { message: "The name %{value} is already taken move"}
 
     has_many :poke_moves,
     dependent: :destroy
 
-
+    has_many :pokemon,
+    through: :poke_moves
 
 end
